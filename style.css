@@ -39,3 +39,7 @@ button:hover{
     transition: all 0.3s ease;
     box-shadow: 1rem 1rem cadetblue;
 }
+
+div{
+    color: aliceblue;
+}
