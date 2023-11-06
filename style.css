@@ -40,14 +40,43 @@ button:hover{
     box-shadow: 1rem 1rem cadetblue;
 }
 
+.content {
+    border-radius: 2rem;
+    border: 2px cadetblue solid;
+    margin: 2rem;
+}
+
 .timer{
     color: aliceblue;
     display: grid;
     justify-content: center;
     margin: 1rem;
     padding: 2rem 1rem;
-    font-size: 5rem;
+    font-size: 4rem;
     border: 2px solid cadetblue;
-    border-radius: 3rem;
+    border-radius: 2rem;
     transition: all 0.83s ease;
+}
+
+@media(width >= 700px) {
+    ul{
+        display: flex;
+        justify-content: space-around;
+    }
+    .timer{
+        display: grid;
+        justify-content: center;
+        font-size: 5rem;
+    }
+}
+
+@media(width >= 900px) {
+    ul{
+        display: flex;
+        justify-content: space-around;
+    }
+    .timer{
+        border: none;
+        font-size: 7rem;
+    }
 }
