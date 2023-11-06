@@ -40,6 +40,14 @@ button:hover{
     box-shadow: 1rem 1rem cadetblue;
 }
 
-div{
+.timer{
     color: aliceblue;
+    display: grid;
+    justify-content: center;
+    margin: 1rem;
+    padding: 2rem 1rem;
+    font-size: 5rem;
+    border: 2px solid cadetblue;
+    border-radius: 3rem;
+    transition: all 0.83s ease;
 }
