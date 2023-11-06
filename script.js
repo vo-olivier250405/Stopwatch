@@ -5,39 +5,57 @@ var timer = document.getElementById("timer");
 var sec = "0";
 var min = "0";
 var hours = "0";
+var timeout;
 var stopped = true;
-startBtn === null || startBtn === void 0
-  ? void 0
-  : startBtn.addEventListener("click", launch);
-resetBtn === null || resetBtn === void 0
-  ? void 0
-  : resetBtn.addEventListener("click", reset);
+startBtn === null || startBtn === void 0 ? void 0 : startBtn.addEventListener("click", launch);
+resetBtn === null || resetBtn === void 0 ? void 0 : resetBtn.addEventListener("click", reset);
+stopBtn === null || stopBtn === void 0 ? void 0 : stopBtn.addEventListener("click", stopTimer);
 function launch() {
-  stopped = false;
-  starting();
+    if (stopped) {
+        stopped = false;
+        starting();
+    }
 }
 function starting() {
-  var intArr = [+sec, +min, +hours];
-  if (stopped) {
-    return;
-  }
-  intArr[0] += 1;
-  if (intArr[0] >= 60) {
-    intArr[1] += 1;
-    intArr[0] = 0;
-  }
-  if (intArr[1] >= 60) {
-    intArr[2] += 1;
-    intArr[1] = 0;
-  }
-  timer.textContent = ""
-    .concat(intArr[0].toString(), ":")
-    .concat(intArr[1].toString(), ":")
-    .concat(intArr[2].toString());
+    var intArr = [+sec, +min, +hours];
+    sec = parseInt(sec);
+    min = parseInt(min);
+    hours = parseInt(hours);
+    if (stopped) {
+        return;
+    }
+    sec += 1;
+    if (sec >= 60) {
+        min += 1;
+        sec = 0;
+    }
+    if (min >= 60) {
+        hours += 1;
+        min = 0;
+    }
+    if (sec < 10) {
+        sec = "0" + sec;
+    }
+    if (min < 10) {
+        min = "0" + min;
+    }
+    if (hours < 10) {
+        hours = "0" + hours;
+    }
+    timer.textContent = "".concat(hours, ":").concat(min, ":").concat(sec);
+    timeout = setTimeout(starting, 1000);
 }
 function reset() {
-  timer.textContent = "00:00:00";
-  sec = "0";
-  min = "0";
-  hours = "0";
+    stopped = true;
+    timer.textContent = "00:00:00";
+    sec = 0;
+    min = 0;
+    hours = 0;
+    clearTimeout(timeout);
+}
+function stopTimer() {
+    if (!stopped) {
+        stopped = true;
+        clearTimeout(timeout);
+    }
 }

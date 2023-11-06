@@ -3,40 +3,67 @@ let stopBtn = document.querySelector("button.stop");
 let resetBtn = document.querySelector("button.reset");
 let timer = document.getElementById("timer");
 
-let sec: string = "0";
-let min: string = "0";
-let hours: string = "0";
+let sec: any = "0";
+let min: any = "0";
+let hours: any = "0";
+let timeout;
 
 let stopped: boolean = true;
 
 startBtn?.addEventListener("click", launch);
 resetBtn?.addEventListener("click", reset);
+stopBtn?.addEventListener("click", stopTimer);
 
-function launch() {
-  stopped = false;
-  starting();
+function launch(): void {
+  if (stopped) {
+    stopped = false;
+    starting();
+  }
 }
 
-function starting() {
+function starting(): void {
   let intArr: number[] = [+sec, +min, +hours];
+  sec = parseInt(sec);
+  min = parseInt(min);
+  hours = parseInt(hours);
+
   if (stopped) {
     return;
   }
-  intArr[0] += 1;
-  if (intArr[0] >= 60) {
-    intArr[1] += 1;
-    intArr[0] = 0;
+  sec += 1;
+  if (sec >= 60) {
+    min += 1;
+    sec = 0;
   }
-  if (intArr[1] >= 60) {
-    intArr[2] += 1;
-    intArr[1] = 0;
+  if (min >= 60) {
+    hours += 1;
+    min = 0;
   }
-  timer.textContent = `${intArr[0].toString()}:${intArr[1].toString()}:${intArr[2].toString()}`;
+  if (sec < 10) {
+    sec = "0" + sec;
+  }
+  if (min < 10) {
+    min = "0" + min;
+  }
+  if (hours < 10) {
+    hours = "0" + hours;
+  }
+  timer.textContent = `${hours}:${min}:${sec}`;
+  timeout = setTimeout(starting, 1000);
 }
 
-function reset() {
+function reset(): void {
+  stopped = true;
   timer.textContent = "00:00:00";
-  sec = "0";
-  min = "0";
-  hours = "0";
+  sec = 0;
+  min = 0;
+  hours = 0;
+  clearTimeout(timeout);
+}
+
+function stopTimer(): void {
+  if (!stopped) {
+    stopped = true;
+    clearTimeout(timeout);
+  }
 }
