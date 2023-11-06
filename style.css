@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@200&display=swap');
+
+*{
+    font-family: "Oswald", bold;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: medium;
+}
+
+body{
+    background-color: #181818;
+}
+
+ul{
+    display: grid;
+    justify-content: center;
+    padding: 5rem;
+    transition: all 1s ease;
+}
+
+button{
+    border: none;
+    border-radius: 5px;
+    padding: 1rem 3rem;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    color: #181818;
+    transition: all 0.3s ease;
+    background-color: cadetblue;
+    box-shadow: 0.75rem 0.75rem  rgb(44, 75, 77);
+}
+
+button:hover{
+    background-color: rgb(44, 75, 77);
+    color: #dfd8d8;
+    transition: all 0.3s ease;
+    box-shadow: 1rem 1rem cadetblue;
+}
